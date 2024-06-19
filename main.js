@@ -98,6 +98,10 @@ function validateStudentInfo(id, name, age, mark, isEditing = false, index = -1)
         alert("Mã sinh viên hoặc Tên sinh viên không được để trống. Yêu cầu nhập dữ liệu!");
         return false;
     }
+    if (id < 0){
+        alert("Mã sinh viên không hợp lệ. Yêu cầu nhập lại!");
+        return false;
+    }
     if (!isEditing) {
         let isDuplicate = mySchool.listStudent.some(student => student.id === id);
         if (isDuplicate) {
