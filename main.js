@@ -140,6 +140,7 @@ function showTopStudent(){
 
     let strTopStudent = `
         <tr>
+            <th>STT</th>
             <th>Mã sinh viên</th>
             <th>Tên sinh viên</th>
             <th>Tuổi sinh viên</th>
@@ -159,6 +160,7 @@ function showTopStudent(){
         let avgMark = averageMark(topStudents[i].mark);
         strTopStudent += `
         <tr>
+            <td>${i+1}</td>
             <td>${topStudents[i].id}</td>
             <td>${topStudents[i].name}</td>
             <td>${topStudents[i].age}</td>
@@ -183,6 +185,7 @@ function showAllStudent(students = mySchool.listStudent) {
     //let list = mySchool.listStudent;
     let strStudent = `
         <tr>
+            <th>STT</th>
             <th>Mã sinh viên</th>
             <th>Tên sinh viên</th>
             <th>Tuổi sinh viên</th>
@@ -202,6 +205,7 @@ function showAllStudent(students = mySchool.listStudent) {
         let avgMark = averageMark(students[i].mark);
         strStudent += `
         <tr>
+            <td>${i+1}</td>
             <td>${students[i].id}</td>
             <td>${students[i].name}</td>
             <td>${students[i].age}</td>
