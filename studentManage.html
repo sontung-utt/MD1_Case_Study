@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+<style>
+    body {
+        font-family: "Roboto Condensed", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-size: 15px;
+        font-style: normal;
+    }
+
+    h1 {
+        background-color: darkorange;
+        margin: 10px;
+        text-align: center; 
+        font-size: 35px;
+        color: ghostwhite;
+    }
+
+    h1,
+    h2 {
+        text-align: center;
+    }
+
+    img {
+        width: 75px;
+        height: 100px;
+        align-items: center;
+    }
+
+    th,
+    td {
+        padding: 6px 8px;
+    }
+
+    th {
+        background-color: gainsboro;
+    }
+
+    .tdbtn {
+        text-align: center;
+    }
+
+    .button {
+        color: burlywood;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        margin-left: 20px;
+    }
+
+    .btn {
+        padding: 5px;
+        border-radius: 4px;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        border: none;
+    }
+
+    .btn-add {
+        background-color: green;
+    }
+
+    .btn-add:hover {
+        background-color: darkgreen;
+    }
+
+    .btn-remove {
+        background-color: rgba(246, 4, 4, 0.912);
+    }
+
+    .btn-remove:hover {
+        background-color: darkred;
+    }
+
+    .btn-edit {
+        background-color: gold;
+    }
+
+    .btn-edit:hover {
+        background-color: rgb(136, 136, 36);
+    }
+
+    .btn-sort {
+        background-color: goldenrod;
+    }
+
+    .btn-sort:hover {
+        background-color: darkgoldenrod;
+    }
+
+    #sortButton {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .tableInfo tr:nth-child(even) {
+        background-color: bisque;
+    }
+
+    .tableInfo tr:nth-child(odd) {
+        background-color: burlywood;
+    }
+
+    .tableSection tr {
+        background-color: whitesmoke;
+    }
+
+    .tableSection{
+        margin-top: 25px;
+    }
+
+    .utt {
+        width: 100%;
+        height: 200px;
+    }
+</style>
+
+<body>
+    <img src="utt.png" alt="" class="utt">
+    <h1>Quản lý thông tin sinh viên</h1>
+    <div class="container">
+        <div class="tableSection">
+            <table border="1">
+                <tr>
+                    <th colspan="2">Thông tin sinh viên</th>
+                </tr>
+                <tr>
+                    <td><label for="id">Mã sinh viên</label></td>
+                    <td><input type="number" id="id" placeholder="Nhập mã"></td>
+                </tr>
+                <tr>
+                    <td><label for="name">Tên sinh viên</label></td>
+                    <td><input type="text" id="name" placeholder="Nhập tên"></td>
+                </tr>
+                <tr>
+                    <td><label for="age">Tuổi sinh viên</label></td>
+                    <td><input type="text" id="age" placeholder="Nhập tuổi"></td>
+                </tr>
+                <tr>
+                    <td><label for="img">Ảnh sinh viên</label></td>
+                    <td><input type="text" id="img" placeholder="Chèn ảnh"></td>
+                </tr>
+                <tr>
+                    <td><label for="class">Lớp sinh viên</label></td>
+                    <td><select id="class">
+                            <option value="Java">Java</option>
+                            <option value="Python">Python</option>
+                            <option value="C#">C#</option>
+                            <option value="C++">C++</option>
+                            <option value=".Net">.Net</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td><label for="mark">Điểm sinh viên</label><br></td>
+                    <td><input type="text" id="mark" placeholder="Nhập điểm"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="tdbtn">
+                        <div id="btn">
+                            <button class="btn btn-add" onclick="addStudent()">Thêm sinh viên</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="tableInfo">
+            <h2>Danh sách sinh viên</h2>
+            <div id="sortButton">
+                <button class="btn btn-sort" onclick="sortDescMark()">Sắp xếp giảm dần</button>
+                <button class="btn btn-sort" onclick="sortAscMark()">Sắp xếp tăng dần</button>
+                <input type="text" placeholder="Tìm kiếm" id="search" oninput="searchStudent()">
+            </div>
+            <table border="1" class="listStudent" id="listStudent">
+
+            </table>
+        </div>
+    </div>
+    <script src="Student.js"></script>
+    <script src="School.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
