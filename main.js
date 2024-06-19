@@ -11,12 +11,20 @@ function prepareId(id, className){
     }
     return id;
 }
-    */
+*/
 
 function addStudent() {
     let idInput = document.getElementById("id").value;
     let nameInput = document.getElementById("name").value;
     let ageInput = document.getElementById("age").value;
+    let genderInput = "";
+    let genderRadio = document.querySelector('input[name="gender"]:checked');
+    if(genderRadio){
+        genderInput = genderRadio.value;
+    } else {
+        alert("Bạn phải chọn giới tính cho sinh viên!");
+        return;
+    }
     let imgInput = document.getElementById("img").value;
     let classInput = document.getElementById("class").value;
     let markInput = document.getElementById("mark").value;
@@ -24,9 +32,9 @@ function addStudent() {
     if (!validateStudentInfo(idInput, nameInput, ageInput, markInput)) {
         return;
     }
+    
     //idInput = prepareId(idInput,classInput);
-    //document.getElementById("sortButton").style.display = "block";
-    let newStudent = new Student(idInput, nameInput, ageInput, imgInput, classInput, markInput);
+    let newStudent = new Student(idInput, nameInput, ageInput, genderInput, imgInput, classInput, markInput);
     mySchool.addStudent(newStudent);
     resetFormStudent();
     showAllStudent();
@@ -37,6 +45,15 @@ function getEditStudent(index) {
     document.getElementById("id").value = editStudent.id;
     document.getElementById("name").value = editStudent.name;
     document.getElementById("age").value = editStudent.age;
+    let genderRadio = document.querySelector(`input[name="gender"][value="${editStudent.gender}"]`);
+    if(genderRadio){
+        genderRadio.checked = true;
+    } else {
+        let genderRadios = document.getElementsByName("gender");
+        for(let i = 0; i < genderRadios.length; i++){
+            genderRadios[i].checked = false;
+        }
+    }
     document.getElementById("img").value = editStudent.img;
     document.getElementById("class").value = editStudent.class;
     document.getElementById("mark").value = editStudent.mark;
@@ -48,6 +65,7 @@ function editStudent(index) {
     let idInput = document.getElementById("id").value;
     let nameInput = document.getElementById("name").value;
     let ageInput = document.getElementById("age").value;
+    let genderInput = document.querySelector('input[name="gender"]:checked').value;
     let imgInput = document.getElementById("img").value;
     let classInput = document.getElementById("class").value;
     let markInput = document.getElementById("mark").value;
@@ -55,8 +73,12 @@ function editStudent(index) {
     if (!validateStudentInfo(idInput, nameInput, ageInput, markInput, true, index)) {
         return;
     }
+    if (!genderInput) {
+        alert("Bạn phải chọn giới tính cho sinh viên!");
+        return;
+    }
     //idInput = prepareId(idInput,classInput);
-    let editStudent = new Student(idInput, nameInput, ageInput, imgInput, classInput, markInput);
+    let editStudent = new Student(idInput, nameInput, ageInput, genderInput, imgInput, classInput, markInput);
     mySchool.editStudent(index, editStudent);
     showAllStudent();
     resetFormStudent();
@@ -102,6 +124,18 @@ function validateStudentInfo(id, name, age, mark, isEditing = false, index = -1)
         alert("Điểm của sinh viên không hợp lệ. Yêu cầu nhập lại!");
         return false;
     }
+    //let genderChecked = false;
+    let genderRadios = document.getElementsByName("gender");
+    for(let i = 0; i<genderRadios.length; i++){
+        if(genderRadios[i].checked){
+            genderChecked = true;
+            break;
+        }
+    }
+    if(!genderChecked){
+        alert("Bạn phải chọn giới tính cho sinh viên!");
+        return false;
+    }
     return true;
 }
 
@@ -121,6 +155,7 @@ function showTopStudent(){
             <th>Mã sinh viên</th>
             <th>Tên sinh viên</th>
             <th>Tuổi sinh viên</th>
+            <th>Giới tính</th>
             <th>Ảnh sinh viên</th>
             <th>Lớp sinh viên</th>
             <th>Điểm kiểm tra</th>
@@ -139,6 +174,7 @@ function showTopStudent(){
             <td>${topStudents[i].id}</td>
             <td>${topStudents[i].name}</td>
             <td>${topStudents[i].age}</td>
+            <td>${topStudents[i].gender}</td>
             <td><img src="${topStudents[i].img}" ></td>
             <td>${topStudents[i].class}</td>`
         for (let j = 0; j < topStudents[i].mark.length; j++) {
@@ -162,6 +198,7 @@ function showAllStudent(students = mySchool.listStudent) {
             <th>Mã sinh viên</th>
             <th>Tên sinh viên</th>
             <th>Tuổi sinh viên</th>
+            <th>Giới tính</th>
             <th>Ảnh sinh viên</th>
             <th>Lớp sinh viên</th>
             <th>Điểm kiểm tra</th>
@@ -180,6 +217,7 @@ function showAllStudent(students = mySchool.listStudent) {
             <td>${students[i].id}</td>
             <td>${students[i].name}</td>
             <td>${students[i].age}</td>
+            <td>${students[i].gender}</td>
             <td><img src="${students[i].img}" ></td>
             <td>${students[i].class}</td>`
         for (let j = 0; j < students[i].mark.length; j++) {
@@ -219,8 +257,12 @@ function resetFormStudent() {
     document.getElementById("id").value = "";
     document.getElementById("name").value = "";
     document.getElementById("age").value = "";
+    let genderRadios = document.getElementsByName("gender");
+    for(let i = 0; i<genderRadios.length; i++){
+        genderRadios[i].checked = false;
+    }
     document.getElementById("img").value = "";
-    document.getElementById("class").value = "";
+    document.getElementById("class").value = "Java";
     document.getElementById("mark").value = "";
     document.getElementById("btn").innerHTML = `<button class="btn btn-add" onclick="addStudent()">Thêm sinh viên</button>`;
 }
