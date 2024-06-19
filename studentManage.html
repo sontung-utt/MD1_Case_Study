@@ -103,6 +103,14 @@
         background-color: darkgoldenrod;
     }
 
+    .btn-top{
+        background-color: orange;
+    }
+
+    .btn-top:hover {
+        background-color: darkorange;
+    }
+
     #sortButton {
         display: block;
         margin-bottom: 10px;
@@ -183,6 +191,7 @@
             <div id="sortButton">
                 <button class="btn btn-sort" onclick="sortDescMark()">Sắp xếp giảm dần</button>
                 <button class="btn btn-sort" onclick="sortAscMark()">Sắp xếp tăng dần</button>
+                <button class="btn btn-top" onclick="showTopStudent()">Top sinh viên</button>
                 <input type="text" placeholder="Tìm kiếm" id="search" oninput="searchStudent()">
             </div>
             <table border="1" class="listStudent" id="listStudent">
