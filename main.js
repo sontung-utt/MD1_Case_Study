@@ -124,18 +124,6 @@ function validateStudentInfo(id, name, age, mark, isEditing = false, index = -1)
         alert("Điểm của sinh viên không hợp lệ. Yêu cầu nhập lại!");
         return false;
     }
-    //let genderChecked = false;
-    let genderRadios = document.getElementsByName("gender");
-    for(let i = 0; i<genderRadios.length; i++){
-        if(genderRadios[i].checked){
-            genderChecked = true;
-            break;
-        }
-    }
-    if(!genderChecked){
-        alert("Bạn phải chọn giới tính cho sinh viên!");
-        return false;
-    }
     return true;
 }
 
