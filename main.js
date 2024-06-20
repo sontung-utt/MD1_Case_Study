@@ -57,7 +57,7 @@ function getEditStudent(index) {
     document.getElementById("img").value = editStudent.img;
     document.getElementById("class").value = editStudent.class;
     document.getElementById("mark").value = editStudent.mark;
-    document.getElementById("btn").innerHTML = `<button class="btn btn-add" onclick="editStudent(${index})">Sửa thông tin sinh viên</button>`;
+    document.getElementById("btn").innerHTML = `<button class="btn btn-save" onclick="editStudent(${index})">Sửa thông tin sinh viên</button>`;
     showAllStudent();
 }
 
@@ -135,6 +135,16 @@ function searchStudent(){
     let searchName = document.getElementById("search").value.toLowerCase();
     let searchStudent = mySchool.searchStudent(searchName);
     showAllStudent(searchStudent);
+}
+
+function searchByClass(){
+    let searchByClass = document.getElementById("searchClass").value;
+    let searchClass = mySchool.searchByClass(searchByClass);
+    if(searchByClass === "All"){
+        showAllStudent()
+    } else {
+        showAllStudent(searchClass);
+    }
 }
 
 function showTopStudent(){

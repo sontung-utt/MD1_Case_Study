@@ -30,6 +30,10 @@ class School {
         return this.listStudent.filter(student => student.name.toLowerCase().includes(searchName));
     }
 
+    searchByClass(className){
+        return this.listStudent.filter(student => student.class === className); 
+    }
+
     saveToLocalStorage() {
         if (this.listStudent) {
             localStorage.setItem("listSchool", JSON.stringify(this.listStudent));
