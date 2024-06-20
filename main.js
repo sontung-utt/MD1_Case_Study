@@ -151,48 +151,7 @@ function showTopStudent(){
     let students = mySchool.listStudent;
     students.sort((a,b) => averageMark(b.mark) - averageMark(a.mark));
     let topStudents = students.slice(0,5);
-
-    let strTopStudent = `
-        <tr>
-            <th>STT</th>
-            <th>Mã sinh viên</th>
-            <th>Tên sinh viên</th>
-            <th>Tuổi sinh viên</th>
-            <th>Giới tính</th>
-            <th>Ảnh sinh viên</th>
-            <th>Lớp sinh viên</th>
-            <th>Điểm kiểm tra</th>
-            <th>Điểm giữa kỳ</th>
-            <th>Điểm cuối kỳ</th>
-            <th>Điểm trung bình</th>
-            <th colspan="2">Hành động</th>
-        </tr>
-    `;
-    
-    for (let i = 0; i < topStudents.length; i++) {
-        //let student = list[i];
-        let avgMark = averageMark(topStudents[i].mark);
-        strTopStudent += `
-        <tr>
-            <td>${i+1}</td>
-            <td>${topStudents[i].id}</td>
-            <td>${topStudents[i].name}</td>
-            <td>${topStudents[i].age}</td>
-            <td>${topStudents[i].gender}</td>
-            <td><img src="${topStudents[i].img}" ></td>
-            <td>${topStudents[i].class}</td>`
-        for (let j = 0; j < topStudents[i].mark.length; j++) {
-            strTopStudent += `
-                <td>${topStudents[i].mark[j]}</td>
-                `
-        }
-        strTopStudent += `<td>${avgMark}</td>
-            <td><button class="btn btn-edit" onclick="getEditStudent(${i})">Sửa</button></td>
-            <td><button class="btn btn-remove" onclick="removeStudent(${i})">Xóa</button></td>
-        </tr>
-        `
-    }
-    document.getElementById("listStudent").innerHTML = strTopStudent;
+    showAllStudent(topStudents);
 }
 
 function showAllStudent(students = mySchool.listStudent) {
@@ -210,7 +169,7 @@ function showAllStudent(students = mySchool.listStudent) {
             <th>Điểm giữa kỳ</th>
             <th>Điểm cuối kỳ</th>
             <th>Điểm trung bình</th>
-            <th colspan="2">Hành động</th>
+            <th>Hành động</th>
         </tr>
     `;
     
@@ -232,8 +191,8 @@ function showAllStudent(students = mySchool.listStudent) {
                 `
         }
         strStudent += `<td>${avgMark}</td>
-            <td><button class="btn btn-edit" onclick="getEditStudent(${i})">Sửa</button></td>
-            <td><button class="btn btn-remove" onclick="removeStudent(${i})">Xóa</button></td>
+            <td><button class="btn btn-edit" onclick="getEditStudent(${i})">Sửa</button>
+            <button class="btn btn-remove" onclick="removeStudent(${i})">Xóa</button></td>
         </tr>
         `
     }
